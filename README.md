@@ -2,7 +2,7 @@
 Peter Schwab Capstone Project CHEM E 546: Coma Outcomes
 
 # User stories
-
+The user is a medical doctor in a hospital. They have a patient in a comatose state and would like to determine the patient's level of consciousness/prognosis to make the best healthcare decisions for this patient. They know that there is a wide range of outcomes for coma patients, ranging from full recovery with no long term effects to serious disabilities or failure to regain consciousness. The doctor needs a systematic approach to discern the severity of the patient's case based on EEG responses to uniform, randomized auditory or tactile perturbations. They will use the software to input patient EEG data and will recieve a numerical probability score of likelihood outof 100 that the patient will regain consciousness.
 
 # Use-cases
 
