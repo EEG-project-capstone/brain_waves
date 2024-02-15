@@ -1,1 +1,4 @@
-printf "[ ] Download python EEG package from google doc\n[ ] Thing 2" > deliverable_tracking.md
+- [ ] Download EEG python package in the google doc
+- [ ] Something else
+- [x] Something else else
+
