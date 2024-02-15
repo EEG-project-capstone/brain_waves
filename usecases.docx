@@ -38,3 +38,22 @@ Inputs:
 - Outputs from use-case 2 (the quantitative measures extracted from EEGs for each stimulus type).
 Output:
 - Probability score that patient will become behaviorally responsive, some kind of output from ML model (maybe feed quantitative measures into a logistic regressor?)
+
+Components:
+- User authentication system?
+ - Registered user DB
+ - UI for user authentication
+- UI to easily input raw data and patient/case ID then receive processed 
+output
+- Back-end software for:
+ - Consolidating UI inputs (stimulus type, stimulus start time, patient 
+ID, 
+EEG) into individual records
+ - Extracting quantitative measurements from the consolidated raw EEG 
+records
+ - Using the quantitative measurements to output patient prognosis 
+(probability that patient will become behaviorally responsive?)
+- Mid-end software to connect the back-end software components.
+- Easily accessible directory to store labeled raw EEG records (maybe also 
+need to develop UI to access this directory easily?)
+
