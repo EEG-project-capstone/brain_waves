@@ -1,0 +1,40 @@
+Potential project title ideas: brain_waves
+
+User story:
+The user is a medical doctor in a hospital. They have a patient in a comatose state and would like to determine the patient’s level of consciousness/prognosis to make the best healthcare decisions for this patient. They know that there is a wide range of outcomes for coma patients, ranging from full recovery with no long term effects to serious disabilities or failure to regain consciousness. The doctor needs a systematic approach to discern the severity of the patient’s case based on EEG responses to uniform, randomized auditory or tactile perturbations. They will use the software to input patient EEG data and will receive a numerical probability score of likelihood out of 100 that the patient will regain consciousness.
+
+Use-case:
+The user (doctor) will provide EEG data from a reaction test performed on the patient (e.g., a binary datafile containing the voltage values of the EEG). The program is written in Python script, and organized into cells in a Jupyter notebook. Further instructions for how to run each cell will be provided in the Jupyter notebook. These data will be uploaded to the program (where is the program written and how is it accessed? Will the user run cells in a Jupyter notebook? Will we have a designated repo to upload test data?), which will respond with a numerical probability score of likelihood out of 100 that the patient will regain consciousness.
+
+Story and use-cases from Peter’s email response
+User story:
+The users will be clinical researchers. They want to be able to efficiently and reliably test for stimulus-response signals in behaviorally unresponsive patients using EEG. The users would prefer to interact with the software via a user-friendly, simple UI. Importantly, the software needs to be able to timestamp when the stimulus starts in the EEG recordings so that the EEGs can be reliably analyzed. The EEG data should be automated and output a quantitative measure of the signals corresponding to the different types of results (eg reactivity, language tracking, and cognitive motor dissociation). Access to the raw data should also be provided for verification and troubleshooting purposes. The users will come from diverse backgrounds (many of which do NOT have engineering/software training), so the UI will need to be simple and user-friendly.
+
+Use cases and components:
+User Authentication?
+Inputs:
+- User ID and password
+- UI for inputting ID and password
+- DB of registered users
+Outputs:
+- 
+
+Data Collection:
+Inputs:
+- Patient/Case ID
+- Stimulus type
+- EEG recording
+Output:
+- EEG labeled with patient/case ID, stimulus type, and stimulus start time.
+
+EEG Automated Data Processing:
+Input:
+- Marked EEG from output in use-case 1 above
+Outputs:
+- Record that includes patient/case ID, stimulus type, and some kind of “quantitative measure” taken from the raw EEG data.
+
+Patient Prognosis:
+Inputs:
+- Outputs from use-case 2 (the quantitative measures extracted from EEGs for each stimulus type).
+Output:
+- Probability score that patient will become behaviorally responsive, some kind of output from ML model (maybe feed quantitative measures into a logistic regressor?)
