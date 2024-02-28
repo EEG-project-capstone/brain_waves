@@ -9,11 +9,14 @@ The user is a medical doctor in a hospital. They have a patient in a comatose st
 
 # Design components
 ## (1) Stimulus protocol
-This includes 3 types of stimuli presented to patients in a random order to control for biases, as well as for comparison betwene stimuli to determine if they correlate with different recoveries. Two stimuli are verbal, including a stream or words in recorded spoken commands. The remaining stimulus is a tactile test for reactivity. Primary questions that this protocol may answer is whether these paradigms are measuring different parts of patient recovery.
+This includes 3 types of stimuli presented to patients in a random order to control for biases, as well as for comparison between stimuli to determine if they correlate with different recoveries. Two stimuli are verbal, including a stream or words in recorded spoken commands. The remaining stimulus is a tactile test for reactivity. Primary questions that this protocol may answer is whether these paradigms are measuring different parts of patient recovery. *we are thinking we will not continue with the tactile stimuli since it is difficult to automate and would require more assistance from technicians which adds a layer of complexity
 
 ### Inputs (with type information)
+Inputs include identifier information (strings) that will be used to connect EEG recordings with details of type/duration of stimuli provided and eventually connect patient outcome to EEG data
 
 ### Outputs
+Randomly generated audio files that are played from computer
+Storing of audio file words in a dictionary to retrieve upon request
 
 ### How it uses other components
 
