@@ -1,1 +1,1 @@
-["Arielle", "Anika", "Jacob", "Roni"]
+Arielle, Anika, Jacob, Roni
