@@ -128,7 +128,7 @@ dependencies:
   - yaml=0.2.5
   - zeromq=4.3.5
   - zipp=3.17.0
-  - pip:
+  - pip -e --no-deps:
       - psychopy==2023.2.3
       - psychtoolbox==3.0.19.0
 prefix: /Users/septe/opt/anaconda3/envs/cheme
