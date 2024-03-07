@@ -1,1 +1,1 @@
-["waves", "cries", "stands", "lies"]
+waves, cries, stands, lies
