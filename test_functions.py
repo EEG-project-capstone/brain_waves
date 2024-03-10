@@ -26,6 +26,12 @@ class test_generate_and_play_sentences(unittest.TestCase):
             out_id, out_sentences = stimulus_package.generate_and_play_sentences(x+1, x+1)
             self.assertTrue(len(out_sentences)==x+1)
 
+def test_sentence_dict_update(self):
+    #Testing that the dictionary holding the sentences administrated to different patients was updated when the test runs.
+    patient_id, administered_sentences_dict = stimulus_package.generate_and_play_sentences(num_sentences, patient_id)
+    for timestamp, sentence in administered_sentences_dict.items():
+        self.assertEqual(sentence, administered_sentences_dict[timestamp])
+
 class test_update_patient_dict(unittest.TestCase):
 
     # Testing that sentences are added the correct patient IDs
