@@ -7,7 +7,7 @@ num_tests = 2
 
 class test_generate_and_play_sentences(unittest.TestCase):
 
-   """ # Testing that all sentences in the out put sentences are strings
+    # Testing that all sentences in the out put sentences are strings
     def test_generate_sentence(self):
         for x in range(num_tests):
             out_id, out_dict = stimulus_package.generate_and_play_sentences(x+1, x+1)
@@ -24,7 +24,7 @@ class test_generate_and_play_sentences(unittest.TestCase):
     def test_num_sentences(self):
         for x in range(num_tests):
             out_id, out_sentences = stimulus_package.generate_and_play_sentences(x+1, x+1)
-            self.assertTrue(len(out_sentences)==x+1)"""
+            self.assertTrue(len(out_sentences)==x+1)
 
 def test_sentence_dict_update():
     # Testing that the dictionary holding the sentences administered to different patients was updated when the test runs.
@@ -34,7 +34,7 @@ def test_sentence_dict_update():
     for timestamp, sentence in administered_sentences_dict.items():
         assert sentence == administered_sentences_dict[timestamp]
 
-"""class test_update_patient_dict(unittest.TestCase):
+class test_update_patient_dict(unittest.TestCase):
 
     # Testing that sentences are added the correct patient IDs
     def test_correct_patientID(self): 
@@ -44,7 +44,7 @@ def test_sentence_dict_update():
             dict_file = open('patient_dict.json') 
             patient_dict = json.load(dict_file)
             self.assertTrue(str(x+1) in patient_dict)
-            dict_file.close()"""
+            dict_file.close()
 
 """
 class test_prompt_user_inputs(unittest.TestCase):
