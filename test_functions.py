@@ -45,6 +45,13 @@ class test_update_patient_dict(unittest.TestCase):
             patient_dict = json.load(dict_file)
             self.assertTrue(str(x+1) in patient_dict)
             dict_file.close()
+    
+    #test format of the date
+    def test_update_patientID(self):
+        for x in range(num_tests):
+            out_id, out_current_date = stimulus_package.generate_and_play_sentences(x+1, x+1)
+            for sent in out_current_date.values():
+                self.assertTrue(type(sent)==str)
 
 """
 class test_prompt_user_inputs(unittest.TestCase):
