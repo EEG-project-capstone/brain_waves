@@ -1,28 +1,52 @@
-# EEG_ML_2024
-Peter Schwab Capstone Project CHEM E 546: Coma Outcomes
+# Automated Verbal Stimulus Package
 
-# User stories
-The user is a medical doctor in a hospital. They have a patient in a comatose state and would like to determine the patient's level of consciousness/prognosis to make the best healthcare decisions for this patient. They know that there is a wide range of outcomes for coma patients, ranging from full recovery with no long term effects to serious disabilities or failure to regain consciousness. The doctor needs a systematic approach to discern the severity of the patient's case based on EEG responses to uniform, randomized auditory or tactile perturbations. They will use the software to input patient EEG data and will recieve a numerical probability score of likelihood outof 100 that the patient will regain consciousness.
+## Overview
 
-# Use-cases
-The user (a clinical research technician) wants to administer a defined stimulation protocol on a newly admitted comatose patient who has recently experienced a myocardial infarction. The patient has been connected to an EEG. The user runs the stimulus software developed by our group, which outputs complete sentences, as well as commands. The software syncs the outputs to the recorded EEG data for downstream processing and determination of potential patient prognosis. 
+This Verbal Stimulus Package is designed to generate random sentences and administer them as auditory stimuli, particularly for EEG patients. It consists of two Python functions that facilitate this process.
 
-The user (a clinical research technician) wants to administer a defined stimulation protocol on a comatose patient. However, they do not know that the protocol has already been run that day on this patient. When they input the patient ID, the program returns an error explaining that the patient has already had this test administered on that day, thus preventing a protocol run which could return data not representative of the patient’s true cognitive state due to not returning to baseline.
+## Usage guide
 
-# Design components
-## (1) Stimulus protocol
-This includes 3 types of stimuli presented to patients in a random order to control for biases, as well as for comparison between stimuli to determine if they correlate with different recoveries. Two stimuli are verbal, including a stream or words in recorded spoken commands. The remaining stimulus is a tactile test for reactivity. Primary questions that this protocol may answer is whether these paradigms are measuring different parts of patient recovery. *we are thinking we will not continue with the tactile stimuli since it is difficult to automate and would require more assistance from technicians which adds a layer of complexity
+1. Set up a conda environment with the `environment.yml` file. Required packages are `gtts`, `psychopy`, and `psychtoolbox`.
+2. Edit the noun, adjective, and verb lists in the text files (or use the provided default words).
+3. Import `generate_and_play_sentences` and `update_patient_dict` from `stimulus_package.py`.
+4. Call `generate_and_play_sentences` with appropriate arguments to administer the verbal stimuli.
+5. Call `update_patient_dict` with the returns from step 4 to update the patient dictionary with administered stimuli data.
 
-### Inputs (with type information)
-Inputs include identifier information (strings) that will be used to connect EEG recordings with details of type/duration of stimuli provided and eventually connect patient outcome to EEG data
+## Functions
 
-### Outputs
-Randomly generated audio files that are played from computer
-Storing of audio file words in a dictionary to retrieve upon request
+### 1. `generate_and_play_sentences`
 
-### How it uses other components
+This function generates random sentences using the `noun`, `verb`, and `adj_list.txt` files. It then converts these sentences into audio files and plays them. Each sentence is timestamped with the Python clock and saved into a nested dictionary.
 
-### Side effects
+**Parameters:**
+- `num_sentences` (int): Number of sentences to generate and play.
+- `patient_id` (str): Identifier for the EEG patient.
+- `noun_list_path`, `adj_list_path`, `verb_list_path` (str): Paths to the text files containing lists of nouns, adjectives, and verbs.
 
-## (2) Analysis pipeline software
-The stimulus protocol will contain a method for providing a consistent signal that the EEG machine can recognize; thus, all timing can be synched between the EEG signal to the laptop stimulus. The analysis pipeline identifies the start and end of the stimulus for determining the impact of each stimulus on the patient.
+**Returns:**
+- `patient_id` (str): Identifier for the EEG patient.
+- `administered_sentences_dict` (dict): Dictionary containing timestamped sentences.
+
+### 2. `update_patient_dict`
+
+This function updates the `patient_dict.json` with the sentences generated and administered by the `generate_and_play_sentences` function. It organizes the data by patient ID and date.
+
+**Parameters:**
+- `patient_id` (str): Identifier for the EEG patient.
+- `administered_sentences_dict` (dict): Dictionary containing timestamped sentences.
+
+**Returns:**
+- None (Updates the `patient_dict.json`)
+
+## Notes
+
+- This package is currently a work in progress, with plans to develop a GUI.
+- The functions can be used in Jupyter Notebook environments.
+- Remember to modify the word lists as desired for different corpus of words.
+
+## Contributors
+
+- Anika Gupta
+- Arielle Hancko
+- Jacob Cavon
+- Roni Weissman
