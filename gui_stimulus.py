@@ -1,3 +1,4 @@
+pip install streamlit
 import streamlit as st
 from stimulus_package import generate_and_play_sentences, update_patient_dict
 
