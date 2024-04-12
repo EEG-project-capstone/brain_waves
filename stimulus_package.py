@@ -55,40 +55,57 @@ def generate_and_play_sentences(num_sentences=4, patient_id="patient0",
         verb_list = [word.strip()
                      for line in verb_file for word in line.split(',')]
 
+    # Retrieve current date
+    current_date = time.strftime("%Y-%m-%d")
+
+    # Open the patient dict
+    with open("patient_dict.json", 'r') as dictionary_file:
+        try:
+            patient_dict = json.load(dictionary_file)
+        except json.decoder.JSONDecodeError:
+            patient_dict = {}
+
     # Initialize an empty dictionary
     administered_sentences_dict = {}
 
-    sentence_count = 0
+    # Check if patient_id is already in the dictionary
+    if patient_id in patient_dict and current_date in patient_dict[patient_id]:
+        print("Patient has already been administered stimulus protocol today")
+        return patient_id, administered_sentences_dict
 
-    while sentence_count < num_sentences:
-        # Generate random sentence, date, and timestamp
-        noun = random.choice(noun_list)
-        adj = random.choice(adj_list)
-        verb = random.choice(verb_list)
-        sentence = f"{noun} is {adj} and {verb}"
+    else:
 
-        # Capture sentence timestamp and update dictionary with administered sentence
-        current_timestamp = time.time()
-        administered_sentences_dict[current_timestamp] = sentence
+        sentence_count = 0
 
-        # initialize the google text to speech object
-        tts = gTTS(text=sentence, lang="en")
-        tts.save("temp.mp3")
+        while sentence_count < num_sentences:
+            # Generate random sentence, date, and timestamp
+            noun = random.choice(noun_list)
+            adj = random.choice(adj_list)
+            verb = random.choice(verb_list)
+            sentence = f"{noun} is {adj} and {verb}"
 
-        # Play audio
-        sentence_sound = sound.Sound("temp.mp3")
-        now = ptb.GetSecs()
-        sound.Sound.play(sentence_sound, when=now)
-        print(sentence)
+            # Capture sentence timestamp and update dictionary with administered sentence
+            current_timestamp = time.time()
+            administered_sentences_dict[current_timestamp] = sentence
 
-        # Wait for 5 seconds before looping again
-        core.wait(5)
+            # initialize the google text to speech object
+            tts = gTTS(text=sentence, lang="en")
+            tts.save("temp.mp3")
 
-        # Increment the sentence count
-        sentence_count += 1
+            # Play audio
+            sentence_sound = sound.Sound("temp.mp3")
+            now = ptb.GetSecs()
+            sound.Sound.play(sentence_sound, when=now)
+            print(sentence)
 
-        # delete the intermediate mp3 file
-        os.remove("temp.mp3")
+            # Wait for 5 seconds before looping again
+            core.wait(5)
+
+            # Increment the sentence count
+            sentence_count += 1
+
+            # delete the intermediate mp3 file
+            os.remove("temp.mp3")
 
     # Return patient ID, current date, and the updated dictionary
     return patient_id, administered_sentences_dict
@@ -127,7 +144,7 @@ def update_patient_dict(patient_id, administered_sentences_dict):
     if current_date not in patient_dict[patient_id]:
         patient_dict[patient_id][current_date] = {}
     else:
-        print("Patient has already been administered stimulus protocol today")
+        print("No dictionary update because patient was already administered stimulus today")
         return
 
     # Update the patient dictionary with sentences_dict
