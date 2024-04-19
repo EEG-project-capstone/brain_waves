@@ -1,7 +1,7 @@
 import streamlit as st
 from stimulus_package import generate_and_play_sentences, update_patient_dict
 
-def start_stimulus(patient_id):
+def start_stimulus(num_sentences, patient_id):
     """
     input: patient_id
     ADD HOW MANY SENTENCES TO ADD AS START_STIMULUS ARGUMENT
@@ -12,7 +12,7 @@ def start_stimulus(patient_id):
         # Change the screen to "Administering Stimulus"
         st.write("Administering Stimulus...")
         st.write("Stimulus is running...")  # Placeholder for actual stimulus running
-        _, administered_sentences_dict = generate_and_play_sentences(patient_id=patient_id)
+        _, administered_sentences_dict = generate_and_play_sentences(num_sentences=num_sentences, patient_id=patient_id)
         update_patient_dict(patient_id, administered_sentences_dict)
         st.success("Stimulus protocol successfully administered.")
 
@@ -25,10 +25,11 @@ st.title("EEG Stimulus Package")
 
 # Patient ID input
 patient_id = st.text_input("Patient ID")
+num_sentences = st.text_input("Number of sentences to administer")
 
     # Start button
 if st.button("Start Stimulus"):
-    start_stimulus(patient_id)
+    start_stimulus(num_sentences, patient_id)
 
     # Add searchable dropdown menu of patient IDs
     st.subheader("Search Patient ID")
