@@ -20,6 +20,9 @@ def start_stimulus(num_sentences, patient_id):
 
 
 ### Streamlit Interface ####
+#defining patient_dict
+with open('patient_dict.json', 'r') as f:
+    patient_dict = json.load(f)
 
 # Streamlit app title
 st.title("EEG Stimulus Package")
@@ -35,10 +38,6 @@ if st.button("Start Stimulus"):
     # Add searchable dropdown menu of patient IDs
     st.subheader("Search Patient ID")
     selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
-
-#defining patient_dict
-with open('patient_dict.json', 'r') as f:
-    patient_dict = json.load(f)
     
 # Button to search for patient data
 if st.button("Search Patient"):
