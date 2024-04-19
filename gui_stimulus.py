@@ -25,7 +25,7 @@ st.title("EEG Stimulus Package")
 
 # Patient ID input
 patient_id = st.text_input("Patient ID")
-num_sentences = st.text_input("Number of sentences to administer")
+num_sentences = st.int_input("Number of sentences to administer")
 
     # Start button
 if st.button("Start Stimulus"):
