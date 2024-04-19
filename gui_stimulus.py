@@ -1,5 +1,6 @@
 import streamlit as st
 from stimulus_package import generate_and_play_sentences, update_patient_dict
+import json 
 
 def start_stimulus(num_sentences, patient_id):
     """
@@ -35,6 +36,10 @@ if st.button("Start Stimulus"):
     st.subheader("Search Patient ID")
     selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
 
+#defining patient_dict
+with open('patient_dict.json', 'r') as f:
+    patient_dict = json.load(f)
+    
 # Button to search for patient data
 if st.button("Search Patient"):
     st.write("Stimulus Dates for Patient ID:", selected_patient)
