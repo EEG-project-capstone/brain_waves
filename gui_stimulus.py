@@ -3,12 +3,15 @@ import streamlit as st
 from stimulus_package import generate_and_play_sentences, update_patient_dict
 
 def start_stimulus(patient_id):
-    if patient_id.strip() == "":
-        st.error("Please enter a patient ID.")
-    else:
-        _, administered_sentences_dict = generate_and_play_sentences(patient_id=patient_id)
-        update_patient_dict(patient_id, administered_sentences_dict)
-        st.success("Stimulus protocol successfully administered.")
+if patient_id.strip() == "":
+    st.error("Please enter a patient ID.")
+else:
+    # Change the screen to "Administering Stimulus"
+    st.write("Administering Stimulus...")
+    st.write("Stimulus is running...")  # Placeholder for actual stimulus running
+    _, administered_sentences_dict = generate_and_play_sentences(patient_id=patient_id)
+    update_patient_dict(patient_id, administered_sentences_dict)
+    st.success("Stimulus protocol successfully administered.")
 
 # Streamlit app title
 st.title("EEG Stimulus Package")
@@ -18,4 +21,13 @@ patient_id = st.text_input("Patient ID")
 
 # Start button
 if st.button("Start Stimulus"):
-    start_stimulus(patient_id)
+start_stimulus(patient_id)
+
+# Add searchable dropdown menu of patient IDs
+st.subheader("Search Patient ID")
+selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
+
+# Button to search for patient data
+if st.button("Search Patient"):
+st.write("Stimulus Dates for Patient ID:", selected_patient)
+st.write(patient_dict[selected_patient])  # Display dates when stimulus was run
