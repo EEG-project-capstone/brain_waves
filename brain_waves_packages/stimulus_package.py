@@ -15,9 +15,7 @@ import time
 # Define and generate lists of words
 #######
 
-def generate_and_play_sentences(num_sentences=4, patient_id="patient0",
-                                noun_list_path="noun_list.txt", adj_list_path="adj_list.txt",
-                                verb_list_path="verb_list.txt"):
+def generate_and_play_sentences(num_sentences=4, patient_id="patient0"):
     """
     Generates random sentences in the form NOUN is ADJECTIVE and VERB by 
     randomly selecting words from the noun, adjective, and verb word lists.
@@ -39,13 +37,19 @@ def generate_and_play_sentences(num_sentences=4, patient_id="patient0",
     Python global timestamp of when the sentence audio was played, and each 
     value is a string of the sentence played.
     """
+    current_directory = os.path.dirname(os.path.abspath(__file__))
 
+    noun_list_path = os.path.join(current_directory, "word_lists/noun_list.txt")
+    adj_list_path = os.path.join(current_directory, "word_lists/adj_list.txt")
+    verb_list_path = os.path.join(current_directory, "word_lists/verb_list.txt")
+
+    patient_dict_path = os.path.join(current_directory, "patient_dict.json")
     # Define lists of words (modify these with your desired words, could even modify this function to take in lists
     # of words as arguments)
 
     with open(noun_list_path, "r") as noun_file:
         noun_list = [word.strip()
-                     for line in noun_file for word in line.split(',')]
+                    for line in noun_file for word in line.split(',')]
 
     with open(adj_list_path, "r") as adj_file:
         adj_list = [word.strip()
@@ -53,13 +57,13 @@ def generate_and_play_sentences(num_sentences=4, patient_id="patient0",
 
     with open(verb_list_path, "r") as verb_file:
         verb_list = [word.strip()
-                     for line in verb_file for word in line.split(',')]
+                    for line in verb_file for word in line.split(',')]
 
     # Retrieve current date
     current_date = time.strftime("%Y-%m-%d")
 
     # Open the patient dict
-    with open("patient_dict.json", 'r') as dictionary_file:
+    with open(patient_dict_path, 'r') as dictionary_file:
         try:
             patient_dict = json.load(dictionary_file)
         except json.decoder.JSONDecodeError:
@@ -127,10 +131,12 @@ def update_patient_dict(patient_id, administered_sentences_dict):
     Returns:
     Updates the global patient_dict with the Python current date and the timestamped sentences administered from generate_and_play_sentences()
     """
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    patient_dict_path = os.path.join(current_directory, "patient_dict.json")
 
     current_date = time.strftime("%Y-%m-%d")
 
-    with open("patient_dict.json", 'r') as dictionary_file:
+    with open(patient_dict_path, 'r') as dictionary_file:
         try:
             patient_dict = json.load(dictionary_file)
         except json.decoder.JSONDecodeError:
@@ -150,7 +156,7 @@ def update_patient_dict(patient_id, administered_sentences_dict):
     # Update the patient dictionary with sentences_dict
     patient_dict[patient_id][current_date].update(administered_sentences_dict)
 
-    with open("patient_dict.json", 'w') as dictionary_file:
+    with open(patient_dict_path, 'w') as dictionary_file:
         json.dump(patient_dict, dictionary_file)
         print(patient_dict)
         print("Successfully saved stimulus protocol record to patient_dict")
