@@ -1,5 +1,7 @@
 import streamlit as st
 from stimulus_package import generate_and_play_sentences, update_patient_dict
+import os
+import json 
 
 def start_stimulus(num_sentences, patient_id):
     """
@@ -19,13 +21,18 @@ def start_stimulus(num_sentences, patient_id):
 
 
 ### Streamlit Interface ####
+#defining patient_dict
+current_directory = os.path.dirname(os.path.abspath(__file__))
+patient_dict_path = os.path.join(current_directory, "patient_dict.json")
+with open(patient_dict_path, 'r') as f:
+    patient_dict = json.load(f)
 
 # Streamlit app title
 st.title("EEG Stimulus Package")
 
 # Patient ID input
 patient_id = st.text_input("Patient ID")
-num_sentences = st.text_input("Number of sentences to administer")
+num_sentences = st.number_input("Number of sentences to administer")
 
     # Start button
 if st.button("Start Stimulus"):
@@ -34,7 +41,7 @@ if st.button("Start Stimulus"):
     # Add searchable dropdown menu of patient IDs
     st.subheader("Search Patient ID")
     selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
-
+    
 # Button to search for patient data
 if st.button("Search Patient"):
     st.write("Stimulus Dates for Patient ID:", selected_patient)

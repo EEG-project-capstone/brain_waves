@@ -203,7 +203,6 @@ dependencies:
   - libopenvino-auto-batch-plugin=2024.0.0
   - libopenvino-auto-plugin=2024.0.0
   - libopenvino-hetero-plugin=2024.0.0
-  - libopenvino-intel-cpu-plugin=2024.0.0
   - libopenvino-ir-frontend=2024.0.0
   - libopenvino-onnx-frontend=2024.0.0
   - libopenvino-paddle-frontend=2024.0.0
