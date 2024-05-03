@@ -18,34 +18,38 @@ def start_stimulus(num_sentences, patient_id):
         update_patient_dict(patient_id, administered_sentences_dict)
         st.success("Stimulus protocol successfully administered.")
 
+def main():
+    # Initialize session state
+    if "patient_notes" not in st.session_state:
+        st.session_state.patient_notes = {}
 
+    #defining patient_dict
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    patient_dict_path = os.path.join(current_directory, "patient_dict.json")
+    with open(patient_dict_path, 'r') as f:
+        patient_dict = json.load(f)
 
-### Streamlit Interface ####
-#defining patient_dict
-current_directory = os.path.dirname(os.path.abspath(__file__))
-patient_dict_path = os.path.join(current_directory, "patient_dict.json")
-with open(patient_dict_path, 'r') as f:
-    patient_dict = json.load(f)
+    # Streamlit app title
+    st.title("EEG Stimulus Package")
 
-# Streamlit app title
-st.title("EEG Stimulus Package")
-
-# Patient ID input
-patient_id = st.text_input("Patient ID")
-num_sentences = st.number_input("Number of sentences to administer")
+    # Patient ID input
+    patient_id = st.text_input("Patient ID")
+    num_sentences = st.number_input("Number of sentences to administer")
 
     # Start button
-if st.button("Start Stimulus"):
-    start_stimulus(num_sentences, patient_id)
+    if st.button("Start Stimulus"):
+        start_stimulus(num_sentences, patient_id)
 
-# Add searchable dropdown menu of patient IDs
-st.subheader("Search Patient ID")
-selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
+    # Add searchable dropdown menu of patient IDs
+    st.subheader("Search Patient ID")
+    selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
 
-#Button to search input patient note
-def main():
+    if st.button("Search Patient"):
+        st.write("Stimulus Dates for Patient ID:", selected_patient)
+        st.write(patient_dict[selected_patient])  # Display dates when stimulus was run
+
+    # Button to add patient note
     page = st.sidebar.selectbox("Select a page", ["Home", "Patient Notes"])
-
     if page == "Home":
         st.title("Welcome to Patient Management System")
         if st.button("Add Patient Note"):
@@ -56,9 +60,6 @@ def main():
         show_patient_note_page()
 
 def show_patient_note_page():
-    if "patient_notes" not in st.session_state:
-        st.session_state.patient_notes = {}
-
     st.write("Input Patient Note:")
     patient_note = st.text_area("Patient Note")
 
@@ -72,8 +73,3 @@ def show_patient_note_page():
 
 if __name__ == "__main__":
     main()
-    
-# Button to search for patient data
-if st.button("Search Patient"):
-    st.write("Stimulus Dates for Patient ID:", selected_patient)
-    st.write(patient_dict[selected_patient])  # Display dates when stimulus was run
