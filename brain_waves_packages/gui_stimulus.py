@@ -38,9 +38,40 @@ num_sentences = st.number_input("Number of sentences to administer")
 if st.button("Start Stimulus"):
     start_stimulus(num_sentences, patient_id)
 
-    # Add searchable dropdown menu of patient IDs
-    st.subheader("Search Patient ID")
-    selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
+# Add searchable dropdown menu of patient IDs
+st.subheader("Search Patient ID")
+selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
+
+#Button to search input patient note
+def main():
+    page = st.sidebar.selectbox("Select a page", ["Home", "Patient Notes"])
+
+    if page == "Home":
+        st.title("Welcome to Patient Management System")
+        if st.button("Add Patient Note"):
+            st.session_state.show_patient_note_page = True
+
+    elif page == "Patient Notes":
+        st.title("Patient Notes")
+        show_patient_note_page()
+
+def show_patient_note_page():
+    if "patient_notes" not in st.session_state:
+        st.session_state.patient_notes = {}
+
+    st.write("Input Patient Note:")
+    patient_note = st.text_area("Patient Note")
+
+    st.write("Select Date:")
+    note_date = st.date_input("Date")
+
+    if st.button("Submit"):
+        # Add note to patient_notes dictionary with date as key
+        st.session_state.patient_notes[note_date] = patient_note
+        st.success("Note added successfully!")
+
+if __name__ == "__main__":
+    main()
     
 # Button to search for patient data
 if st.button("Search Patient"):
