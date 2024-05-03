@@ -18,12 +18,32 @@ def start_stimulus(num_sentences, patient_id):
         update_patient_dict(patient_id, administered_sentences_dict)
         st.success("Stimulus protocol successfully administered.")
 
+def load_patient_dict(file_path):
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as f:
+            try:
+                patient_dict = json.load(f)
+            except json.JSONDecodeError:
+                patient_dict = {}
+    else:
+        patient_dict = {}
+    return patient_dict
+
 def main():
     # Load patient_dict from JSON file
     current_directory = os.path.dirname(os.path.abspath(__file__))
     patient_dict_path = os.path.join(current_directory, "patient_dict.json")
-    with open(patient_dict_path, 'r') as f:
-        patient_dict = json.load(f)
+
+
+    patient_dict = load_patient_dict(patient_dict_path)
+
+
+	with open(patient_dict_path, 'r') as f:
+        	patient_dict = json.load(f)
+
+	if __name__ = "__main__":
+		main()
+
 
     # Streamlit app title
     st.title("EEG Stimulus Package")
