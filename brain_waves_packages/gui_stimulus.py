@@ -38,11 +38,11 @@ def main():
     patient_dict = load_patient_dict(patient_dict_path)
 
 
-	with open(patient_dict_path, 'r') as f:
-        	patient_dict = json.load(f)
+    with open(patient_dict_path, 'r') as f:
+        patient_dict = json.load(f)
 
-	if __name__ = "__main__":
-		main()
+    if __name__ == "__main__":
+	main()
 
 
     # Streamlit app title
