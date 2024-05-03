@@ -19,11 +19,7 @@ def start_stimulus(num_sentences, patient_id):
         st.success("Stimulus protocol successfully administered.")
 
 def main():
-    # Initialize session state
-    if "patient_notes" not in st.session_state:
-        st.session_state.patient_notes = {}
-
-    #defining patient_dict
+    # Load patient_dict from JSON file
     current_directory = os.path.dirname(os.path.abspath(__file__))
     patient_dict_path = os.path.join(current_directory, "patient_dict.json")
     with open(patient_dict_path, 'r') as f:
@@ -53,7 +49,7 @@ def main():
     if page == "Home":
         st.title("Welcome to Patient Management System")
         if st.button("Add Patient Note"):
-            st.session_state.show_patient_note_page = True
+            show_patient_note_page()
 
     elif page == "Patient Notes":
         st.title("Patient Notes")
