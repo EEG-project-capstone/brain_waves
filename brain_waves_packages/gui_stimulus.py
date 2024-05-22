@@ -11,13 +11,19 @@ def start_stimulus(num_sentences, patient_id):
     if patient_id.strip() == "":
         st.error("Please enter a patient ID.")
     else:
+        # Create placeholders for the messages
+        administering_placeholder = st.empty()
+        running_placeholder = st.empty()
+
         # Change the screen to "Administering Stimulus"
-        st.write("Administering Stimulus...")
-        st.write("Stimulus is running...")  # Placeholder for actual stimulus running
+        administering_placeholder.write("Administering Stimulus...")
+        running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
+
+        # Generate and play sentences
         _, administered_sentences_dict = generate_and_play_sentences(num_sentences=num_sentences, patient_id=patient_id)
         update_patient_dict(patient_id, administered_sentences_dict)
-        st.success("Stimulus protocol successfully administered.")
 
+<<<<<<< HEAD
 def load_patient_dict(file_path):
     if os.path.exists(file_path):
         with open(file_path, 'r') as f:
@@ -36,7 +42,14 @@ def main():
 
 
     patient_dict = load_patient_dict(patient_dict_path)
+=======
+        # Clear the previous messages
+        administering_placeholder.empty()
+        running_placeholder.empty()
+>>>>>>> origin/main
 
+        # Show success message
+        st.success("Stimulus protocol successfully administered.")
 
     with open(patient_dict_path, 'r') as f:
         patient_dict = json.load(f)
