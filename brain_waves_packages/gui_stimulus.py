@@ -4,7 +4,7 @@ import pandas as pd
 import os
 import json 
 
-def start_stimulus(patient_id):
+def start_stimulus(input_patient_id):
     """
     input: patient_id
     ADD HOW MANY SENTENCES TO ADD AS START_STIMULUS ARGUMENT
@@ -21,7 +21,7 @@ def start_stimulus(patient_id):
         running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
 
         # Generate and play sentences
-        generate_and_play_stimuli(patient_id=patient_id)
+        generate_and_play_stimuli(input_patient_id)
         #update_patient_dict(patient_id, administered_sentences_dict)
 
         # Clear the previous messages
@@ -51,7 +51,7 @@ if st.button("Start Stimulus"):
 
     # Add searchable dropdown menu of patient IDs
     st.subheader("Search Patient ID")
-    selected_patient = st.selectbox("Select Patient ID", patient_df.patient_id.value_counts().index.tolist())
+    selected_patient = st.selectbox("Select Patient ID", patient_df.patient_id.value_counts().index)
     
 # Button to search for patient data
 if st.button("Search Patient"):
