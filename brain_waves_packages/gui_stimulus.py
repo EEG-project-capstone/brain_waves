@@ -1,9 +1,10 @@
 import streamlit as st
-from stimulus_package import generate_and_play_sentences, update_patient_dict
+from stimulus_package3 import *
+import pandas as pd
 import os
 import json 
 
-def start_stimulus(num_sentences, patient_id):
+def start_stimulus(patient_id):
     """
     input: patient_id
     ADD HOW MANY SENTENCES TO ADD AS START_STIMULUS ARGUMENT
@@ -11,38 +12,48 @@ def start_stimulus(num_sentences, patient_id):
     if patient_id.strip() == "":
         st.error("Please enter a patient ID.")
     else:
+        # Create placeholders for the messages
+        administering_placeholder = st.empty()
+        running_placeholder = st.empty()
+
         # Change the screen to "Administering Stimulus"
-        st.write("Administering Stimulus...")
-        st.write("Stimulus is running...")  # Placeholder for actual stimulus running
-        _, administered_sentences_dict = generate_and_play_sentences(num_sentences=num_sentences, patient_id=patient_id)
-        update_patient_dict(patient_id, administered_sentences_dict)
+        administering_placeholder.write("Administering Stimulus...")
+        running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
+
+        # Generate and play sentences
+        generate_and_play_stimuli(patient_id=patient_id)
+        #update_patient_dict(patient_id, administered_sentences_dict)
+
+        # Clear the previous messages
+        administering_placeholder.empty()
+        running_placeholder.empty()
+
+        # Show success message
         st.success("Stimulus protocol successfully administered.")
-
-
 
 ### Streamlit Interface ####
 #defining patient_dict
-current_directory = os.path.dirname(os.path.abspath(__file__))
-patient_dict_path = os.path.join(current_directory, "patient_dict.json")
-with open(patient_dict_path, 'r') as f:
-    patient_dict = json.load(f)
+#current_directory = os.path.dirname(os.path.abspath(__file__))
+#patient_dict_path = os.path.join(current_directory, "patient_dict.json")
+#with open(patient_dict_path, 'r') as f:
+#    patient_dict = json.load(f)
+patient_df = pd.read_csv("patient_df.csv")
 
 # Streamlit app title
 st.title("EEG Stimulus Package")
 
 # Patient ID input
 patient_id = st.text_input("Patient ID")
-num_sentences = st.number_input("Number of sentences to administer")
 
-    # Start button
+# Start button
 if st.button("Start Stimulus"):
-    start_stimulus(num_sentences, patient_id)
+    start_stimulus(patient_id)
 
     # Add searchable dropdown menu of patient IDs
     st.subheader("Search Patient ID")
-    selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
+    selected_patient = st.selectbox("Select Patient ID", patient_df.patient_id.value_counts().index.tolist())
     
 # Button to search for patient data
 if st.button("Search Patient"):
     st.write("Stimulus Dates for Patient ID:", selected_patient)
-    st.write(patient_dict[selected_patient])  # Display dates when stimulus was run
+    st.write(patient_df[patient_df.patient_id == selected_patient].date.tolist())  # Display dates when stimulus was run
