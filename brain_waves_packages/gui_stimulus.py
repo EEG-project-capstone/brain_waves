@@ -21,7 +21,7 @@ def start_stimulus(patient_id):
         running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
 
         # Generate and play sentences
-        _, administered_sentences_dict = generate_and_play_stimuli(patient_id=patient_id)  # Hardcoded number of sentences to 10
+        generate_and_play_stimuli(patient_id=patient_id)
         #update_patient_dict(patient_id, administered_sentences_dict)
 
         # Clear the previous messages
