@@ -3,7 +3,7 @@ from stimulus_package import generate_and_play_sentences, update_patient_dict
 import os
 import json 
 
-def start_stimulus(num_sentences, patient_id):
+def start_stimulus(patient_id):
     """
     input: patient_id
     ADD HOW MANY SENTENCES TO ADD AS START_STIMULUS ARGUMENT
@@ -20,7 +20,7 @@ def start_stimulus(num_sentences, patient_id):
         running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
 
         # Generate and play sentences
-        _, administered_sentences_dict = generate_and_play_sentences(num_sentences=num_sentences, patient_id=patient_id)
+        _, administered_sentences_dict = generate_and_play_sentences(num_sentences=1, patient_id=patient_id)  # Hardcoded number of sentences to 10
         update_patient_dict(patient_id, administered_sentences_dict)
 
         # Clear the previous messages
@@ -42,11 +42,10 @@ st.title("EEG Stimulus Package")
 
 # Patient ID input
 patient_id = st.text_input("Patient ID")
-num_sentences = st.number_input("Number of sentences to administer")
 
-    # Start button
+# Start button
 if st.button("Start Stimulus"):
-    start_stimulus(num_sentences, patient_id)
+    start_stimulus(patient_id)
 
     # Add searchable dropdown menu of patient IDs
     st.subheader("Search Patient ID")
