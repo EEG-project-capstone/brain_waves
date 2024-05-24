@@ -1,5 +1,4 @@
-patient_id,timestamp,sentence,date
-patient0,1714759894.6270368,Arielle is awake and waves,2024-05-03
-patient0,1714759900.4602509,Roni is surprised and lies,2024-05-03
-patient0,1714759905.665051,Anika is awake and stands,2024-05-03
-patient0,1714759910.859987,Roni is surprised and stands,2024-05-03
+patient_id,date,stimulus,timestamp,order
+patient0,2024-05-24,BEEP,1716576643.9293609,"beep, sentence, word"
+patient0,2024-05-24,poor men want work,1716576648.930568,"beep, sentence, word"
+patient0,2024-05-24,grape,1716576654.1092448,"beep, sentence, word"
