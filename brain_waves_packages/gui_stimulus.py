@@ -42,6 +42,10 @@ patient_df = pd.read_csv("patient_df.csv")
 # Streamlit app title
 st.title("EEG Stimulus Package")
 
+# Add searchable dropdown menu of patient IDs
+st.subheader("Search Patient ID")
+selected_patient = st.selectbox("Select Patient ID", list(patient_dict.keys()))
+
 # Patient ID input
 patient_id = st.text_input("Patient ID")
 
