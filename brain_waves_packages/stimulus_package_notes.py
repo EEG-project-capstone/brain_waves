@@ -18,10 +18,10 @@ def add_notes(patient_id="patient0", note="blank test note"):
 
     Note:
     The function checks if the patient has been administered stimulus by
-    verifying if there exists a record for the patient in 'patient_df.csv'
-    with the current date or earlier dates. If such a record exists, the note
-    is appended to 'patient_notes.csv'. If 'patient_df.csv' does not exist, it
-    prints a message indicating that stimulus generation was not run.
+    verifying if there exists a record for the patient in 'patient_df.csv'.
+    If such a record exists, the note is appended to 'patient_notes.csv'. 
+    If 'patient_df.csv' does not exist, it prints a message indicating
+    that stimulus package hasn't been run for the patient yet.
     """
     # Retrieve current date
     current_date = time.strftime("%Y-%m-%d")
@@ -41,7 +41,7 @@ def add_notes(patient_id="patient0", note="blank test note"):
         print('Make sure the patient_df.csv exists, if it does not, generate sentences was never run (ie no patients have been administered stimulus yet).')
 
     # Check to see if patient has already been given stimulus
-    if (patient_df['patient_id'] == patient_id).any() and (patient_df['date'] <= current_date).any():
+    if (patient_df['patient_id'] == patient_id).any():
         # Create a DataFrame with the new note
         new_note = pd.DataFrame([{'patient_id': patient_id, 'notes': note, 'date': current_date}])
         # Concatenate the new note with the existing patient notes DataFrame
