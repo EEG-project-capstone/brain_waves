@@ -1,51 +1,55 @@
 import streamlit as st
 from stimulus_package3 import *
+from stimulus_package_notes import add_notes
 import pandas as pd
 import os
 import time
 
+# Load patient data
 patient_df = pd.read_csv("patient_df.csv")
 current_date = time.strftime("%Y-%m-%d")
 
-def start_stimulus(input_patient_id):
-    """
-    input: patient_id
-    ADD HOW MANY SENTENCES TO ADD AS START_STIMULUS ARGUMENT
-    """
-    if patient_id.strip() == "":
-        st.error("Please enter a patient ID.")
-    
-    elif ((patient_df['patient_id'] == patient_id) & (patient_df['date'] == current_date)).any():
-        st.error("Patient has already been administered stimulus protocol today")
-
-    else:
-        # Create placeholders for the messages
-        administering_placeholder = st.empty()
-        running_placeholder = st.empty()
-
-        # Change the screen to "Administering Stimulus"
-        administering_placeholder.write("Administering Stimulus...")
-        running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
-
-        # Generate and play sentences
-        generate_and_play_stimuli(input_patient_id)
-        #update_patient_dict(patient_id, administered_sentences_dict)
-
-        # Clear the previous messages
-        administering_placeholder.empty()
-        running_placeholder.empty()
-
-        # Show success message
-        st.success("Stimulus protocol successfully administered and data saved to patient_df.csv.")
-
-### Streamlit Interface ####
+### Streamlit Interface ###
 
 # Streamlit app title
 st.title("EEG Stimulus Package")
 
 st.header("Administer Auditory Stimuli", divider='rainbow')
+
 # Patient ID input
 patient_id = st.text_input("Enter Patient/EEG ID")
+
+def start_stimulus(input_patient_id):
+    """
+    Administers the auditory stimuli to the patient.
+    
+    Parameters:
+    input_patient_id (str): The ID of the patient.
+    """
+    if patient_id.strip() == "":
+        st.error("Please enter a patient ID.")
+    elif ((patient_df['patient_id'] == patient_id) & (patient_df['date'] == current_date)).any():
+        st.error("Patient has already been administered stimulus protocol today")
+    else:
+        # Create placeholders for the messages
+        #administering_placeholder = st.empty()
+        running_placeholder = st.empty()
+
+        # Change the screen to "Administering Stimulus"
+        #administering_placeholder.write("Administering Stimulus...")
+        running_placeholder.write("Stimulus is running...")  # Placeholder for actual stimulus running
+
+        # Generate and play sentences
+        generate_and_play_stimuli(input_patient_id)
+
+        # Clear the previous messages
+        #administering_placeholder.empty()
+        running_placeholder.empty()
+
+        st.experimental_rerun()
+        # Show success message
+        st.success("Stimulus protocol successfully administered and data saved to patient_df.csv.")
+
 
 # Start button
 if st.button("Start Stimulus"):
@@ -56,7 +60,6 @@ st.header("Search Patients Already Administered Stimuli", divider='rainbow')
 
 # Add searchable dropdown menu of patient IDs
 selected_patient = st.selectbox("Select Patient ID", patient_df.patient_id.value_counts().index.sort_values())
-
 selected_date = st.selectbox("Select Administered Date", patient_df[patient_df.patient_id == selected_patient].date.value_counts().index.sort_values())
 
 st.subheader("The following auditory stimuli were administered:")
@@ -66,3 +69,31 @@ for stimulus in patient_df[(patient_df.patient_id == selected_patient) & (patien
 st.subheader("Stimuli were administered in the following order:")
 for order in patient_df[(patient_df.patient_id == selected_patient) & (patient_df.date == selected_date)].order.value_counts().index.tolist():
     st.write(order)
+
+st.header("Add Notes to your Selected Patient and Date", divider='rainbow')
+your_note = st.text_input("Write your note here")
+
+# Add Note button
+if st.button("Add Note"):
+    add_notes(selected_patient, your_note, selected_date)
+    st.success("Your note was successfully added to patient_notes.csv")
+
+st.header("Find Patient Notes", divider='rainbow')
+st.subheader("The following notes have been written for the selected patient and date:")
+
+if not os.path.exists("patient_notes.csv"):
+    st.error("You haven't added any notes yet, add a note first.")
+else:
+    patient_notes = pd.read_csv("patient_notes.csv")
+    selected_patient_find_notes = st.selectbox(
+        "Select Patient ID", 
+        patient_notes.patient_id.value_counts().index.sort_values(), 
+        key="widget_key_for_find_patient_notes"
+    )
+    selected_date_find_notes = st.selectbox(
+        "Select Administered Date", 
+        patient_notes[patient_notes.patient_id == selected_patient_find_notes].date.value_counts().index.sort_values(), 
+        key="widget_key_for_find_date_notes"
+    )
+    for note in patient_notes[(patient_notes.patient_id == selected_patient_find_notes) & (patient_notes.date == selected_date_find_notes)].notes.tolist():
+        st.write(note)
