@@ -1,7 +1,5 @@
 streamlit
 pandas
-time
-random
 gtts
 psychopy
 psychtoolbox
