@@ -1,1 +1,9 @@
-
+json
+streamlit
+pandas
+os
+time
+random
+gtts
+psychopy
+psychtoolbox
