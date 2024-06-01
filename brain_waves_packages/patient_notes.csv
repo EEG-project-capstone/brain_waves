@@ -1,0 +1,4 @@
+patient_id,notes,date
+patient123,"Test note! Lots of outside noise / it was hard to put earplugs into patient ears, maybe messed up stimuli.",2024-05-24
+patient1,"Another test note, checking to see if there is a character limit on the notes or how long the notes can be before they're displayed weird on the search notes part",2024-05-24
+patient456,We can add test notes,2024-05-24

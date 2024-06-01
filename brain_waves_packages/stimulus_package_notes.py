@@ -3,7 +3,7 @@ import time
 import pandas as pd
 
 
-def add_notes(patient_id="patient0", note="blank test note"):
+def add_notes(patient_id="patient0", note="blank test note", recorded_date="00/00/0000"):
     """
     Adds a note for a patient to a CSV file if the
     patient has already been administered stimulus.
@@ -23,8 +23,6 @@ def add_notes(patient_id="patient0", note="blank test note"):
     If 'patient_df.csv' does not exist, it prints a message indicating
     that stimulus package hasn't been run for the patient yet.
     """
-    # Retrieve current date
-    current_date = time.strftime("%Y-%m-%d")
 
     if os.path.exists('patient_notes.csv'):
         # Open the patient notes DataFrame
@@ -43,7 +41,7 @@ def add_notes(patient_id="patient0", note="blank test note"):
     # Check to see if patient has already been given stimulus
     if (patient_df['patient_id'] == patient_id).any():
         # Create a DataFrame with the new note
-        new_note = pd.DataFrame([{'patient_id': patient_id, 'notes': note, 'date': current_date}])
+        new_note = pd.DataFrame([{'patient_id': patient_id, 'notes': note, 'date': recorded_date}])
         # Concatenate the new note with the existing patient notes DataFrame
         patient_notes = pd.concat([patient_notes, new_note], ignore_index=True)
         # Save the updated DataFrame to CSV
