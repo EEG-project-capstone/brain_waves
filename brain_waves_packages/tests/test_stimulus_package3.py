@@ -25,27 +25,20 @@ class TestAdministerSentence(unittest.TestCase):
     @patch('gtts.gTTS')
     @patch('psychopy.sound.Sound')
     @patch('os.remove')
-    def test_gtts_and_file_creation(self, mock_remove, mock_Sound, mock_gTTS):
+    @patch('builtins.open', new_callable=unittest.mock.mock_open)
+    def test_gtts_and_file_creation(self, mock_open, mock_remove, mock_Sound, mock_gTTS):
         mock_tts = MagicMock()
         mock_gTTS.return_value = mock_tts
-        mock_Sound.return_value = MagicMock()
+        mock_sound_instance = MagicMock()
+        mock_Sound.return_value = mock_sound_instance
 
         sentence_list = ['test_sentence']
         sentence, _ = administer_sentence(sentence_list)
 
+        mock_tts.save.assert_called_once_with('temp_sentence.mp3')
         mock_Sound.assert_called_once_with('temp_sentence.mp3')
+        mock_sound_instance.play.assert_called_once()
         mock_remove.assert_called_once_with('temp_sentence.mp3')
-
-    @patch('psychopy.sound.Sound.play')
-    @patch('psychopy.sound.Sound')
-    def test_sound_playback(self, mock_Sound, mock_play):
-        mock_sound_instance = MagicMock()
-        mock_Sound.return_value = mock_sound_instance
-
-        administer_sentence(['test_sentence'])
-
-        mock_Sound.assert_called_once_with('temp_sentence.mp3')
-        mock_play.assert_called_once_with(mock_sound_instance, when=ANY)
 
     @patch('os.path.exists', return_value=True)
     @patch('os.remove')
@@ -70,27 +63,20 @@ class TestAdministerWord(unittest.TestCase):
     @patch('gtts.gTTS')
     @patch('psychopy.sound.Sound')
     @patch('os.remove')
-    def test_gtts_and_file_creation(self, mock_remove, mock_Sound, mock_gTTS):
+    @patch('builtins.open', new_callable=unittest.mock.mock_open)
+    def test_gtts_and_file_creation(self, mock_open, mock_remove, mock_Sound, mock_gTTS):
         mock_tts = MagicMock()
         mock_gTTS.return_value = mock_tts
-        mock_Sound.return_value = MagicMock()
+        mock_sound_instance = MagicMock()
+        mock_Sound.return_value = mock_sound_instance
 
         word_list = ['test_word']
         word, _ = administer_word(word_list)
 
+        mock_tts.save.assert_called_once_with('temp_word.mp3')
         mock_Sound.assert_called_once_with('temp_word.mp3')
+        mock_sound_instance.play.assert_called_once()
         mock_remove.assert_called_once_with('temp_word.mp3')
-
-    @patch('psychopy.sound.Sound.play')
-    @patch('psychopy.sound.Sound')
-    def test_sound_playback(self, mock_Sound, mock_play):
-        mock_sound_instance = MagicMock()
-        mock_Sound.return_value = mock_sound_instance
-
-        administer_word(['test_word'])
-
-        mock_Sound.assert_called_once_with('temp_word.mp3')
-        mock_play.assert_called_once_with(mock_sound_instance, when=ANY)
 
     @patch('os.path.exists', return_value=True)
     @patch('os.remove')
@@ -118,7 +104,6 @@ class TestAdministerBeep(unittest.TestCase):
         mock_Sound.assert_called_once_with(value=1000, secs=0.5)
         # Verify the sound was played with the correct timing
         mock_play.assert_called_once_with(mock_sound_instance, when=ANY)
-        # Verify the function return values
 
 class TestGetRandomStimulusOrder(unittest.TestCase):
 
@@ -145,8 +130,6 @@ class TestGetRandomStimulusOrder(unittest.TestCase):
         # There are 6 possible permutations of 3 items
         self.assertGreaterEqual(len(orders), 3)
         self.assertLessEqual(len(orders), 6)
-
-
 
 if __name__ == '__main__':
     unittest.main()
