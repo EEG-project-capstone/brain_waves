@@ -6,7 +6,7 @@ import os
 from gtts import gTTS
 from psychopy import sound
 import psychtoolbox as ptb
-from stimulus_package3 import administer_sentence, administer_word, administer_beep, get_random_stimulus_order, generate_and_play_stimuli
+from brain_waves_packages.stimulus_package3 import administer_sentence, administer_word, administer_beep, get_random_stimulus_order, generate_and_play_stimuli
 
 class TestAdministerSentence(unittest.TestCase):
 
