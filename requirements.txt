@@ -1,9 +1,7 @@
-json
 streamlit
 pandas
-os
-time
-random
+attrdict3
+wxPython == 4.2.1
 gtts
 psychopy
 psychtoolbox
