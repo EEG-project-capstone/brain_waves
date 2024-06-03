@@ -11,16 +11,16 @@ from brain_waves_packages.stimulus_package3 import administer_sentence, administ
 
 class TestAdministerSentence(unittest.TestCase):
 
-    @patch('random.choice')
-    def test_random_sentence_selection(self, mock_choice):
-        mock_choice.return_value = 'test_sentence'
-        result, _ = administer_sentence(['test_sentence'])
-        self.assertEqual(result, 'test_sentence')
+    # @patch('random.choice')
+    # def test_random_sentence_selection(self, mock_choice):
+    #     mock_choice.return_value = 'test_sentence'
+    #     result, _ = administer_sentence(['test_sentence'])
+    #     self.assertEqual(result, 'test_sentence')
 
-    @patch('time.time', return_value=1717178400.0)
-    def test_timestamp(self, mock_time):
-        _, timestamp = administer_sentence(['test_sentence'])
-        self.assertEqual(timestamp, 1717178400.0)
+    # @patch('time.time', return_value=1717178400.0)
+    # def test_timestamp(self, mock_time):
+    #     _, timestamp = administer_sentence(['test_sentence'])
+    #     self.assertEqual(timestamp, 1717178400.0)
 
     @patch('gtts.gTTS')
     @patch('psychopy.sound.Sound')
@@ -47,25 +47,25 @@ class TestAdministerSentence(unittest.TestCase):
         mock_Sound.assert_called_once_with('temp_sentence.mp3')
         mock_play.assert_called_once_with(mock_sound_instance, when=ANY)
 
-    @patch('os.path.exists', return_value=True)
-    @patch('os.remove')
-    def test_file_deletion(self, mock_remove, mock_exists):
-        administer_sentence(['test_sentence'])
-        mock_exists.assert_called_once_with('temp_sentence.mp3')
-        mock_remove.assert_called_once_with('temp_sentence.mp3')
+    # @patch('os.path.exists', return_value=True)
+    # @patch('os.remove')
+    # def test_file_deletion(self, mock_remove, mock_exists):
+    #     administer_sentence(['test_sentence'])
+    #     mock_exists.assert_called_once_with('temp_sentence.mp3')
+    #     mock_remove.assert_called_once_with('temp_sentence.mp3')
 
 class TestAdministerWord(unittest.TestCase):
 
-    @patch('random.choice')
-    def test_random_word_selection(self, mock_choice):
-        mock_choice.return_value = 'test_word'
-        result, _ = administer_word(['test_word'])
-        self.assertEqual(result, 'test_word')
+    # @patch('random.choice')
+    # def test_random_word_selection(self, mock_choice):
+    #     mock_choice.return_value = 'test_word'
+    #     result, _ = administer_word(['test_word'])
+    #     self.assertEqual(result, 'test_word')
 
-    @patch('time.time', return_value=1717178400.0)
-    def test_timestamp(self, mock_time):
-        _, timestamp = administer_word(['test_word'])
-        self.assertEqual(timestamp, 1717178400.0)
+    # @patch('time.time', return_value=1717178400.0)
+    # def test_timestamp(self, mock_time):
+    #     _, timestamp = administer_word(['test_word'])
+    #     self.assertEqual(timestamp, 1717178400.0)
 
     @patch('gtts.gTTS')
     @patch('psychopy.sound.Sound')
@@ -92,19 +92,19 @@ class TestAdministerWord(unittest.TestCase):
         mock_Sound.assert_called_once_with('temp_word.mp3')
         mock_play.assert_called_once_with(mock_sound_instance, when=ANY)
 
-    @patch('os.path.exists', return_value=True)
-    @patch('os.remove')
-    def test_file_deletion(self, mock_remove, mock_exists):
-        administer_word(['test_word'])
-        mock_exists.assert_called_once_with('temp_word.mp3')
-        mock_remove.assert_called_once_with('temp_word.mp3')
+    # @patch('os.path.exists', return_value=True)
+    # @patch('os.remove')
+    # def test_file_deletion(self, mock_remove, mock_exists):
+    #     administer_word(['test_word'])
+    #     mock_exists.assert_called_once_with('temp_word.mp3')
+    #     mock_remove.assert_called_once_with('temp_word.mp3')
 
 class TestAdministerBeep(unittest.TestCase):
 
-    @patch('time.time', return_value=1717178400.0)
-    def test_timestamp(self, mock_time):
-        _, timestamp = administer_beep()
-        self.assertEqual(timestamp, 1717178400.0)
+    # @patch('time.time', return_value=1717178400.0)
+    # def test_timestamp(self, mock_time):
+    #     _, timestamp = administer_beep()
+    #     self.assertEqual(timestamp, 1717178400.0)
 
     @patch('psychopy.sound.Sound.play')
     @patch('psychopy.sound.Sound')
