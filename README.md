@@ -110,12 +110,12 @@ This Verbal Stimulus Package is designed to generate random sentences and admini
 
 ### 1. `generate_and_play_sentences`
 
-This function generates random sentences using the `noun`, `verb`, and `adj_list.txt` files. It then converts these sentences into audio files and plays them. Each sentence is timestamped with the Python clock and saved into a nested dictionary.
+This function generates random sentences using the files from Rodika's sentence administration system. It then converts a sentence, word, and beep into audio files and plays them in a random order. Each sentence/word/beep is timestamped with the Python clock and saved into a nested dictionary.
 
 **Parameters:**
 - `num_sentences` (int): Number of sentences to generate and play.
 - `patient_id` (str): Identifier for the EEG patient.
-- `noun_list_path`, `adj_list_path`, `verb_list_path` (str): Paths to the text files containing lists of nouns, adjectives, and verbs.
+- `rodika_sentences.txt` (str): Path to the text file containing lists of sentences.
 
 **Returns:**
 - `patient_id` (str): Identifier for the EEG patient.
@@ -127,16 +127,21 @@ This function updates the `patient_dict.json` with the sentences generated and a
 
 **Parameters:**
 - `patient_id` (str): Identifier for the EEG patient.
-- `administered_sentences_dict` (dict): Dictionary containing timestamped sentences.
+- `administered_sentences_dict` (dict): Dictionary containing timestamped sentences, words, and beep.
 
 **Returns:**
 - None (Updates the `patient_dict.json`)
 
 ## Notes
 
-- This package is currently a work in progress, with plans to develop a GUI.
-- The functions can be used in Jupyter Notebook environments.
-- Remember to modify the word lists as desired for different corpus of words.
+- GUI has been developed using Streamlit
+- The functions can be used in Jupyter Notebook environments
+
+## Future Work Ideas
+- Implement an archive function to remove patient data that we don't need to access anymore
+- Tactile stimulus (hand squeeze, etc.)
+- Methods of editing frequency at which words and sentences are played (might require finding an alternative to PsychoPy)
+- Incorporating GUI tunable method to change hyperparameters (delays, hertz, etc.)
 
 ## Contributors
 
@@ -148,5 +153,5 @@ This function updates the `patient_dict.json` with the sentences generated and a
 - Khanh Ha
 
 ## Powerpoint Presentations
-https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0yz_ODsBUjHLSKQaZU/edit?usp=sharing
-
+Winter 2024: https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0yz_ODsBUjHLSKQaZU/edit?usp=sharing
+Spring 2024: incoming
