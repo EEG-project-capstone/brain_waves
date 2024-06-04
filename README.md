@@ -144,6 +144,8 @@ This function updates the `patient_dict.json` with the sentences generated and a
 - Arielle Hancko
 - Jacob Cavon
 - Roni Weissman
+- Annika Philomin
+- Khanh Ha
 
 ## Powerpoint Presentations
 https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0yz_ODsBUjHLSKQaZU/edit?usp=sharing
