@@ -65,7 +65,7 @@ def administer_beep(frequency=1000, duration=0.5):
     # Initialize sound
     frequency = 1000
     duration = 0.5
-    echo "\x07" 
+    echo "sample_beep" 
     #for a Windows machine, use:
     #winsound.Beep(frequency, duration)
     
