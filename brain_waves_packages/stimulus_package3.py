@@ -18,13 +18,13 @@ def administer_sentence(sentence_list):
     # Initialize gTTS and play the sentence audio
     tts = gTTS(text=sentence, lang="en")
     tts.save("temp_sentence.mp3")
-    sentence_sound = sound.Sound("temp_sentence.mp3")
+    #sentence_sound = sound.Sound("temp_sentence.mp3")
     now = ptb.GetSecs()
     #Replacing sound.Sound.play (which is using PsychoPy) with a python version of running sound player.
     #PsychoPy is the better option because it allows you to control frequency + timing, but it is no longer working
     #PsychoPy has been reported to have issues running, but if future teams can work on getting this up and running that would be great!
     #sound.Sound.play(sentence_sound, when=now)
-    playsound(sentence_sound)
+    playsound("temp_sentence.mp3")
 
     # Delete intermediate mp3 file
     if os.path.exists("temp_sentence.mp3"):
