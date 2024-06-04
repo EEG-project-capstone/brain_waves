@@ -99,38 +99,103 @@ This Verbal Stimulus Package is designed to generate random sentences and admini
 
 ## Usage guide
 
-1. Set up a conda environment with the `environment.yml` file. Required packages are `gtts`, `psychopy`, and `psychtoolbox`.
-     - PsychoPy no longer used due to erroring, would be great for future teams to troubleshoot this as it would allow for more specific control over stimulus.
-2. Edit the noun, adjective, and verb lists in the text files (or use the provided default words).
-3. Import `generate_and_play_sentences` and `update_patient_dict` from `stimulus_package.py`.
-4. Call `generate_and_play_sentences` with appropriate arguments to administer the verbal stimuli.
-5. Call `update_patient_dict` with the returns from step 4 to update the patient dictionary with administered stimuli data.
+1. Set up a conda environment with the `environment.yml` file. Required packages are `gtts`, `psychopy`, `psychtoolbox`, and `playsound`.
+     - PsychoPy no longer used due to erroring (now using `playsound`), would be great for future teams to troubleshoot this as it would allow for more specific control over stimulus.
+2. Edit the word and/or sentence lists in the text files (or use the provided default words and sentence lists).
+3. Launch the GUI by navigating `brain_waves_packages` directory in the terminal. Then write `streamlit run gui_stimulus.py` into the terminal and enter. This should launch the GUI in the browser.
+4. Administer stimulus by entering a `patient_id` into the textbox at the top of the screen, then push the start stimulus button. Play around with the other functionalities of the GUI.
 
-## Functions
+# Functions
 
-### 1. `generate_and_play_sentences`
+## Graphical User Interface (GUI)
 
-This function generates random sentences using the files from Rodika's sentence administration system. It then converts a sentence, word, and beep into audio files and plays them in a random order. Each sentence/word/beep is timestamped with the Python clock and saved into a nested dictionary.
+### GUI Stimulus Package
+
+This script provides a user interface for administering auditory stimuli to patients. It utilizes the Streamlit library for creating a web-based interface. The main functionalities include administering stimuli, searching for patients who have already been administered stimuli, adding notes to patient records, and finding patient notes.
+
+#### Usage:
+Run the backend functions through the GUI web interface. Launch the GUI by following step 3 in Usage guide above.
+
+#### Components:
+- **Administer Auditory Stimuli:** Allows users to input patient/EEG ID and start administering auditory stimuli. If a patient has already been administered stimulus protocol on the current date, an error message is displayed.
+- **Search Patients Already Administered Stimuli:** Enables users to search for patients who have already been administered stimuli. Users can select a patient ID and date to view the administered stimuli and their order.
+- **Add Notes to Your Selected Patient and Date:** Provides a text input field for users to add notes to a selected patient and date. Users can click the "Add Note" button to append the note to the patient's record.
+- **Find Patient Notes:** Allows users to find notes written for a selected patient and date. Users can select a patient ID and date to view the notes.
+
+#### Dependencies:
+- streamlit
+- stimulus_package3
+- stimulus_package_notes
+- pandas
+- os
+- time
+
+#### Output:
+The script generates and saves data to 'patient_df.csv' and 'patient_notes.csv' files.
+
+
+## Backend Functions
+
+### administer_sentence
+
+Administers a sentence stimulus to a patient.
 
 **Parameters:**
-- `num_sentences` (int): Number of sentences to generate and play.
-- `patient_id` (str): Identifier for the EEG patient.
-- `rodika_sentences.txt` (str): Path to the text file containing lists of sentences.
+- `sentence_list` (list): A list of sentences to choose from and play.
 
 **Returns:**
-- `patient_id` (str): Identifier for the EEG patient.
-- `administered_sentences_dict` (dict): Dictionary containing timestamped sentences.
+- `sentence` (str): The administered sentence.
+- `timestamp` (float): The timestamp when the sentence was administered.
 
-### 2. `update_patient_dict`
+---
 
-This function updates the `patient_dict.json` with the sentences generated and administered by the `generate_and_play_sentences` function. It organizes the data by patient ID and date.
+### administer_word
+
+Administers a word stimulus to a patient.
 
 **Parameters:**
-- `patient_id` (str): Identifier for the EEG patient.
-- `administered_sentences_dict` (dict): Dictionary containing timestamped sentences, words, and beep.
+- `word_list` (list): A list of words to choose from and play.
 
 **Returns:**
-- None (Updates the `patient_dict.json`)
+- `word` (str): The administered word.
+- `timestamp` (float): The timestamp when the word was administered.
+
+---
+
+### administer_beep
+
+Administers a beep stimulus to a patient.
+
+**Parameters:**
+- `frequency` (int): The frequency of the beep sound. Default is 1000 Hz.
+- `duration` (float): The duration of the beep sound in seconds. Default is 0.5 seconds.
+
+**Returns:**
+- `beep` (str): The string "BEEP".
+- `timestamp` (float): The timestamp when the beep was administered.
+
+---
+
+### get_random_stimulus_order
+
+Generates a random order of stimuli to be administered.
+
+**Returns:**
+- `stimuli` (list): A list of stimuli ("sentence", "word", "beep") in random order.
+
+---
+
+### generate_and_play_stimuli
+
+Generates and plays auditory stimuli for a patient.
+
+**Parameters:**
+- `patient_id` (str): The ID of the patient. Default is "patient0".
+
+**Outputs:**
+- The function plays the selected stimuli for the patient.
+- The results are recorded and saved to 'patient_df.csv'.
+
 
 ## Notes
 
