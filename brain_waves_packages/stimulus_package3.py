@@ -6,8 +6,8 @@ from gtts import gTTS
 from psychopy import sound, core
 import psychtoolbox as ptb
 from playsound import playsound
-import winsound
-import pyecho
+#import winsound
+#import pyecho
 
 
 def administer_sentence(sentence_list):
