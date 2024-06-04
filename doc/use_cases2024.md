@@ -9,7 +9,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 **Actor:** Administrator/User  
 **Trigger:** User interacts with the GUI to perform desired actions.
 
-**Basic Flow:**
+### Basic Flow:
 1. **Administer Stimuli:**
     - User enters the patient ID.
     - User clicks the "Start Stimulus" button.
@@ -40,7 +40,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 - Notes are appended to the patient's entry.
 - The system displays notes matching the selected patient ID and date.
 
-**Components:**
+### Components:
 
 **Component Name:** `gui_stimulus.py`  
 **Input:**
@@ -63,7 +63,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 **Actor:** Administrator/User  
 **Trigger:** User decides to administer stimuli to a patient via the GUI.
 
-**Basic Flow:**
+#### Basic Flow:
 1. User enters the patient ID.
 2. User clicks the "Start Stimulus" button.
 3. System checks if the patient has already been administered the stimulus protocol for the current date.
@@ -76,7 +76,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 - Administered stimuli and timestamps are recorded for the patient.
 - The results are saved to `patient_df.csv`.
 
-**Components:**
+#### Components:
 
 **Component Name:** `administer_sentence`  
 **Input:**
@@ -120,7 +120,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 **Actor:** Administrator/User  
 **Trigger:** User decides to record a note for the administered stimuli.  
 
-**Basic Flow:**
+#### Basic Flow:
 1. User selects the patient entry for which to add a note.
 2. User enters the note content and the date of the note.
 3. User triggers the stimulus_package_notes function.
@@ -129,7 +129,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 **Alternate Flow:** None  
 **Post-conditions:** The note is appended to the patient's entry related to the stimulus package.
 
-**Components:**
+#### Components:
 
 **Component Name:** `stimulus_package_notes`  
 **Input:**
