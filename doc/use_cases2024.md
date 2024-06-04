@@ -42,7 +42,8 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 
 ### Components:
 
-`gui_stimulus.py`  
+`gui_stimulus.py`
+
 **Input:**
 - User-entered `patient_id` for administering stimuli.
 - User-selected `patient_id` and date for searching/querying and finding notes.
@@ -78,37 +79,47 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 
 #### Components:
 
-`administer_sentence`  
+`administer_sentence`
+
 **Input:**
 - `sentence_list` (list): A list of sentences to choose from and play.
+
 **Output:** 
 - `sentence` (str): The administered sentence.
 - `timestamp` (float): The timestamp when the sentence was administered.
 
-`administer_word`  
+`administer_word`
+
 **Input:**
 - `word_list` (list): A list of words to choose from and play.
+
 **Output:** 
 - `word` (str): The administered word.
 - `timestamp` (float): The timestamp when the word was administered.
 
-`administer_beep`  
+`administer_beep`
+
 **Input:**
 - `frequency` (int): The frequency of the beep sound. Default is 1000 Hz.
 - `duration` (float): The duration of the beep sound in seconds. Default is 0.5 seconds.
+
 **Output:** 
 - `beep` (str): The string "BEEP".
 - `timestamp` (float): The timestamp when the beep was administered.
 
-`get_random_stimulus_order`  
+`get_random_stimulus_order`
+
 **Input:** None  
+
 **Output:** 
 - Updates patient_df.csv with string of order stimuli were administered, date, patient_id, timestamps of stimuli, and strings of administered stimuli
 
 
-`generate_and_play_stimuli`  
+`generate_and_play_stimuli`
+
 **Input:**
 - `patient_id` (str): The ID of the patient. Default is "patient0".
+
 **Output:**
 - The function plays the stimuli in a random order for the patient.
 - The results are recorded and saved to `patient_df.csv`.
@@ -131,7 +142,8 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 
 #### Components:
 
-`stimulus_package_notes`  
+`stimulus_package_notes`
+
 **Input:**
 - `patient_notes_path` (str): Path to the patient_notes.csv file.
 - `patient_id` (str): Identifier for the patient.
