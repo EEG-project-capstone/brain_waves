@@ -64,7 +64,10 @@ def administer_beep(frequency=1000, duration=0.5):
     # Initialize sound
     frequency = 1000
     duration = 0.5
-    winsound.Beep(frequency, duration)
+    echo "\x07" 
+    #for a Windows machine, use:
+    #winsound.Beep(frequency, duration)
+    
     #commented out: the PsychoPy version of creating the beep sound. We shifted to using a Python version.
     #beep_sound = sound.Sound(value=frequency, secs=duration)
     #now = ptb.GetSecs()
