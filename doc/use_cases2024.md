@@ -1,7 +1,7 @@
-### User Story
+# User Story
 In the realm of comatose patient research, a user-friendly GUI software is essential for administering audio stimuli efficiently across various settings. Physician researchers require a tool that enables easy patient selection, date specification for administration, and playback of diverse auditory stimuli, such as sentences, words, and beeps. Additionally, the software should facilitate the quick addition of detailed notes to patient records to support comprehensive data analysis. With this solution, physician researchers can conduct auditory processing studies effectively and gain valuable insights into comatose patient responsiveness.
 
-### Use Cases
+# Use Cases
 
 ### Graphical User Interface (GUI)
 
