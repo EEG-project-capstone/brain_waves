@@ -6,6 +6,8 @@ from gtts import gTTS
 from psychopy import sound, core
 import psychtoolbox as ptb
 from playsound import playsound
+import winsound
+
 
 def administer_sentence(sentence_list):
 
@@ -43,9 +45,10 @@ def administer_word(word_list):
     # Initialize gTTS and play the sentence audio
     tts = gTTS(text=word, lang="en")
     tts.save("temp_word.mp3")
-    word_sound = sound.Sound("temp_word.mp3")
+    #word_sound = sound.Sound("temp_word.mp3")
     now = ptb.GetSecs()
-    sound.Sound.play(word_sound, when=now)
+    #sound.Sound.play(word_sound, when=now)
+    playsound("temp_word.mp3")
 
     # Delete intermediate mp3 file
     if os.path.exists("temp_word.mp3"):
@@ -59,9 +62,13 @@ def administer_beep(frequency=1000, duration=0.5):
     timestamp = time.time()
     
     # Initialize sound
-    beep_sound = sound.Sound(value=frequency, secs=duration)
-    now = ptb.GetSecs()
-    sound.Sound.play(beep_sound, when=now)
+    frequency = 1000
+    duration = 0.5
+    winsound.Beep(frequency, duration)
+    #commented out: the PsychoPy version of creating the beep sound. We shifted to using a Python version.
+    #beep_sound = sound.Sound(value=frequency, secs=duration)
+    #now = ptb.GetSecs()
+    #sound.Sound.play(beep_sound, when=now)
 
     return "BEEP", timestamp
 
