@@ -1,7 +1,7 @@
 # IN PROGRESS COMPONENTS FOR NEW USE CASES
 ## Use Cases
 
-### Archive Entries:
+### Archive Entries [NOT WORKING]:
 - **Description:** Users can archive/hide specific patient entries in the system.
 - **Actor:** Administrator/User
 - **Trigger:** User decides to archive an entry.
@@ -20,7 +20,7 @@
   - **Output:**
     - None
 
-### Annotating Entries - Adding Notes:
+### Annotating Entries - Adding Notes [WORKS]:
 - **Description:** Users can add notes to patient entries for reference or additional information.
 - **Actor:** Administrator/User
 - **Trigger:** User decides to add a note to a patient entry.
@@ -42,7 +42,7 @@
   - **Output:**
     - None
 
-### Search/Query Function:
+### Search/Query Function [WORKS]:
 - **Description:** Users can search and query patient entries based on various criteria.
 - **Actor:** Administrator/User
 - **Trigger:** User initiates a search/query action.
@@ -64,7 +64,7 @@
    
 ### Existing Functions:
 
-#### 1. Generate and Play Sentences:
+#### 1. Generate and Play Sentences [WORKS]:
 - **Description:** Generates random sentences and administers them as auditory stimuli for EEG patients.
 - **Actor:** EEG Technician/User
 - **Trigger:** User initiates the generation and administration of sentences.
@@ -76,7 +76,7 @@
 - **Alternate Flow:** None
 - **Post-conditions:** Sentences are played as auditory stimuli, and a dictionary containing timestamped sentences is returned.
 
-#### 2. Update Patient Dictionary:
+#### 2. Update Patient Dictionary [WORKS]:
 - **Description:** Updates the patient_dict.json with the sentences generated and administered by the Generate and Play Sentences function.
 - **Actor:** Backend System/User
 - **Trigger:** After the sentences are generated and played, the user initiates the update of the patient dictionary.
@@ -100,6 +100,7 @@ This Verbal Stimulus Package is designed to generate random sentences and admini
 ## Usage guide
 
 1. Set up a conda environment with the `environment.yml` file. Required packages are `gtts`, `psychopy`, and `psychtoolbox`.
+     - PsychoPy no longer used due to erroring, would be great for future teams to troubleshoot this as it would allow for more specific control over stimulus.
 2. Edit the noun, adjective, and verb lists in the text files (or use the provided default words).
 3. Import `generate_and_play_sentences` and `update_patient_dict` from `stimulus_package.py`.
 4. Call `generate_and_play_sentences` with appropriate arguments to administer the verbal stimuli.
