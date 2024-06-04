@@ -3,7 +3,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 
 # Use Cases
 
-### Graphical User Interface (GUI)
+## Graphical User Interface (GUI)
 
 **Description:** Users can perform various actions through a GUI web interface, including administering stimuli, searching and querying patient entries, and adding notes to patient entries.  
 **Actor:** Administrator/User  
@@ -55,9 +55,9 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 - Display of notes matching the selected patient ID and date.
 
 
-### Backend Functions
+## Backend Functions
 
-#### Administer Stimuli
+### Administer Stimuli
 
 **Description:** Users can administer different types of stimuli (sentence, word, beep) to patients and record the results.  
 **Actor:** Administrator/User  
@@ -114,7 +114,7 @@ In the realm of comatose patient research, a user-friendly GUI software is essen
 - The results are recorded and saved to `patient_df.csv`.
 
 
-#### 3. Record Stimulus Package Notes
+### Record Stimulus Package Notes
 
 **Description:** Users can record notes related to the stimulus package administered to patients.  
 **Actor:** Administrator/User  
