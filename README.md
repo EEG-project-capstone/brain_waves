@@ -1,8 +1,8 @@
-# Automated Verbal Stimulus Package
+# Stimulus Administration Package
 
 ## Overview
 
-The GUI Stimulus Package provides a straightforward and intuitive interface for administering and recording auditory stimuli to patients, designed to be accessible to users without coding expertise. With intuitive functionalities for stimulus administration, patient record management, and note-taking, this software simplifies the process for researchers and clinicians alike. Users can seamlessly administer auditory stimuli to patients through a web-based interface, ensuring efficient data recording and management for research and clinical purposes.
+The Stimulus Administration Package provides a straightforward and intuitive interface for administering and recording auditory stimuli to patients, designed to be accessible to users without coding expertise. With intuitive functionalities for stimulus administration, patient record management, and note-taking, this software simplifies the process for researchers and clinicians alike. Users can seamlessly administer auditory stimuli to patients through a web-based interface, ensuring efficient data recording and management for research and clinical purposes.
 
 ## Usage guide
 
