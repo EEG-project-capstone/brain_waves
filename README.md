@@ -140,3 +140,6 @@ Generates and plays auditory stimuli for a patient.
 ## Powerpoint Presentations
 Winter 2024: https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0yz_ODsBUjHLSKQaZU/edit?usp=sharing
 Spring 2024: incoming
+
+## Gantt Chart Progress Report
+Sprign 2024: https://docs.google.com/spreadsheets/d/1dB0wKZc62g64NrvtKUnsOXBvMH8jNoDxWFfDWA1Aob4/edit?usp=sharing
