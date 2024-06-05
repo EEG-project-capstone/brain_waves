@@ -11,7 +11,18 @@ from playsound import playsound
 
 
 def administer_sentence(sentence_list):
+    
+    """
+    Administers a sentence stimulus to a patient.
 
+    Parameters:
+    - sentence_list (list): A list of sentences to choose from and play.
+
+    Returns:
+    - sentence (str): The administered sentence.
+    - timestamp (float): The timestamp when the sentence was administered.
+    """
+    
     # Initialize word to be played by gTTS
     sentence = random.choice(sentence_list)
 
@@ -37,6 +48,17 @@ def administer_sentence(sentence_list):
 
 def administer_word(word_list):
 
+    """
+    Administers a word stimulus to a patient.
+
+    Parameters:
+    - word_list (list): A list of words to choose from and play.
+
+    Returns:
+    - word (str): The administered word.
+    - timestamp (float): The timestamp when the word was administered.
+    """
+    
     # Initialize word to be played by gTTS
     word = random.choice(word_list)
 
@@ -59,6 +81,18 @@ def administer_word(word_list):
 
 def administer_beep(frequency=1000, duration=0.5):
 
+    """
+    Administers a beep stimulus to a patient.
+
+    Parameters:
+    - frequency (int): The frequency of the beep sound. Default is 1000 Hz.
+    - duration (float): The duration of the beep sound in seconds. Default is 0.5 seconds.
+
+    Returns:
+    - beep (str): The string "BEEP".
+    - timestamp (float): The timestamp when the beep was administered.
+    """
+    
     # Get timestamp of when beep will play
     timestamp = time.time()
     
@@ -77,11 +111,30 @@ def administer_beep(frequency=1000, duration=0.5):
     return "BEEP", timestamp
 
 def get_random_stimulus_order():
+
+    """
+    Generates a random order of stimuli to be administered.
+
+    Returns:
+    - stimuli (list): A list of stimuli ("sentence", "word", "beep") in random order.
+    """
+    
     stimuli = ["sentence", "word", "beep"]
     random.shuffle(stimuli)
     return stimuli
 
 def generate_and_play_stimuli(patient_id="patient0"):
+
+    """
+    Generates and plays auditory stimuli for a patient.
+
+    Parameters:
+    - patient_id (str): The ID of the patient. Default is "patient0".
+
+    Outputs:
+    - The function plays the selected stimuli for the patient.
+    - The results are recorded and saved to 'patient_df.csv'.
+    """
 
     sentence_list_path = os.path.join("corpus/rodika_sentences.txt")
     word_list_path = os.path.join("corpus/word_list.txt")

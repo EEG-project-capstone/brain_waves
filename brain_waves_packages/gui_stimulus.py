@@ -5,6 +5,24 @@ import pandas as pd
 import os
 import time
 
+"""
+GUI Stimulus Package
+
+This script provides a graphical user interface (GUI) for administering auditory stimuli to patients, managing patient records, and adding notes. It utilizes the Streamlit library to create a web-based interface. The main functionalities include:
+
+1. **Administer Auditory Stimuli:** Users can input patient/EEG ID and start administering auditory stimuli. If a patient has already been administered the stimulus protocol on the current date, an error message is displayed.
+
+2. **Search Patients Already Administered Stimuli:** Enables users to search for patients who have already been administered stimuli. Users can select a patient ID and date to view the administered stimuli and their order.
+
+3. **Add Notes to Your Selected Patient and Date:** Provides a text input field for users to add notes to a selected patient and date. Users can click the "Add Note" button to append the note to the patient's record.
+
+4. **Find Patient Notes:** Allows users to find notes written for a selected patient and date. Users can select a patient ID and date to view the notes.
+
+Output:
+The script generates and saves data to 'patient_df.csv' and 'patient_notes.csv' files.
+"""
+
+
 # Load patient data
 patient_df = pd.read_csv("patient_df.csv")
 current_date = time.strftime("%Y-%m-%d")

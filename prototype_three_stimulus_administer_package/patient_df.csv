@@ -1,7 +1,0 @@
-patient_id,date,stimulus,timestamp,order
-patient2,2024-05-24,Arielle is happy and waves,1716570333.784551,"sentence, beep, word"
-patient2,2024-05-24,Roni is happy and lies,1716570339.272438,"sentence, beep, word"
-patient2,2024-05-24,Anika is awake and stands,1716570344.7388768,"sentence, beep, word"
-patient2,2024-05-24,Jacob is tired and cries,1716570349.978849,"sentence, beep, word"
-patient2,2024-05-24,BEEP,1716570360.195644,"sentence, beep, word"
-patient2,2024-05-24,kiwi,1716570365.696994,"sentence, beep, word"
