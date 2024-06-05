@@ -27,14 +27,6 @@ class TestAdministerSentence(unittest.TestCase):
         mock_exists.assert_called_once_with('temp_sentence.mp3')
         mock_remove.assert_called_once_with('temp_sentence.mp3')
 
-    @patch('os.path.exists', return_value=True)
-    @patch('os.remove')
-    def test_file_deletion(self, mock_remove, mock_exists):
-        administer_sentence(['test_sentence'])
-        mock_exists.assert_called_once_with('temp_sentence.mp3')
-        mock_remove.assert_called_once_with('temp_sentence.mp3')
-
-
 class TestAdministerWord(unittest.TestCase):
 
     @patch('random.choice')
@@ -57,14 +49,6 @@ class TestAdministerWord(unittest.TestCase):
 
         mock_exists.assert_called_once_with('temp_word.mp3')
         mock_remove.assert_called_once_with('temp_word.mp3')
-
-    @patch('os.path.exists', return_value=True)
-    @patch('os.remove')
-    def test_file_deletion(self, mock_remove, mock_exists):
-        administer_word(['test_word'])
-        mock_exists.assert_called_once_with('temp_word.mp3')
-        mock_remove.assert_called_once_with('temp_word.mp3')
-
 
 class TestAdministerBeep(unittest.TestCase):
 
