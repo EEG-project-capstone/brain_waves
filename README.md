@@ -8,7 +8,7 @@ The Stimulus Administration Package provides a straightforward and intuitive int
 
 1. Set up a conda environment with the `environment.yml` file. Required packages are `gtts`, `psychopy`, `psychtoolbox`, and `playsound`.
      - PsychoPy no longer used due to erroring (now using `playsound`), would be great for future teams to troubleshoot this as it would allow for more specific control over stimulus.
-2. Edit the word and/or sentence lists in the text files (or use the provided default words and sentence lists).
+2. Edit the word and/or sentence lists in the text files located in the `brain_waves_packages/corpus/` directory. Copy-Paste in your words and/or sentences into the appropriate .txt file(s). Alternatively, you may use the provided default words and sentence lists.
 3. Launch the GUI by navigating `brain_waves_packages` directory in the terminal. Then write `streamlit run gui_stimulus.py` into the terminal and enter. This should launch the GUI in the browser.
 4. Administer stimulus by entering a `patient_id` into the textbox at the top of the screen, then push the start stimulus button. Play around with the other functionalities of the GUI.
 
@@ -142,4 +142,4 @@ Winter 2024: https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0y
 Spring 2024: incoming
 
 ## Gantt Chart Progress Report
-Sprign 2024: https://docs.google.com/spreadsheets/d/1dB0wKZc62g64NrvtKUnsOXBvMH8jNoDxWFfDWA1Aob4/edit?usp=sharing
+Spring 2024: https://docs.google.com/spreadsheets/d/1dB0wKZc62g64NrvtKUnsOXBvMH8jNoDxWFfDWA1Aob4/edit?usp=sharing
