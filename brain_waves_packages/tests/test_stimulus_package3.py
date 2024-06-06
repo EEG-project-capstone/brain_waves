@@ -44,8 +44,8 @@ class TestAdministerWord(unittest.TestCase):
     @patch('os.path.exists', return_value=True)
     def test_file_creation(self, mock_exists, mock_remove):
 
-        sentence_list = ['test_word']
-        sentence, _ = administer_word(sentence_list)
+        word_list = ['test_word']
+        word, _ = administer_word(word_list)
 
         mock_exists.assert_called_once_with('temp_word.mp3')
         mock_remove.assert_called_once_with('temp_word.mp3')
