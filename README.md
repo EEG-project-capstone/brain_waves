@@ -138,8 +138,8 @@ Generates and plays auditory stimuli for a patient.
 - Khanh Ha (Spring 2024)
 
 ## Powerpoint Presentations
--Winter 2024: https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0yz_ODsBUjHLSKQaZU/edit?usp=sharing
--Spring 2024: https://docs.google.com/presentation/d/1FUqLEs0Pi69MavDdpUPYJBafI9lskivDAvJT3tufLfA/edit?usp=sharing
+Winter 2024: https://docs.google.com/presentation/d/1Kp6XUgpTHJ_MS2kLk3vIcxjNE0yz_ODsBUjHLSKQaZU/edit?usp=sharing
+\nSpring 2024: https://docs.google.com/presentation/d/1FUqLEs0Pi69MavDdpUPYJBafI9lskivDAvJT3tufLfA/edit?usp=sharing
 
 ## Gantt Chart Progress Report
 Spring 2024: https://docs.google.com/spreadsheets/d/1dB0wKZc62g64NrvtKUnsOXBvMH8jNoDxWFfDWA1Aob4/edit?usp=sharing
