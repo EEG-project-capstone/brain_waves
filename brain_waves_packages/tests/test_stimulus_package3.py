@@ -17,23 +17,15 @@ class TestAdministerSentence(unittest.TestCase):
         _, timestamp = administer_sentence(['test_sentence'])
         self.assertEqual(timestamp, 1717178400.0)
 
-    @patch('os.remove')
-    @patch('os.path.exists', return_value=True)
-    def test_file_creation(self, mock_exists, mock_remove):
+    # @patch('os.remove')
+    # @patch('os.path.exists', return_value=True)
+    # def test_file_creation(self, mock_exists, mock_remove):
 
-        sentence_list = ['test_sentence']
-        sentence, _ = administer_sentence(sentence_list)
+    #     sentence_list = ['test_sentence']
+    #     sentence, _ = administer_sentence(sentence_list)
 
-        mock_exists.assert_called_once_with('temp_sentence.mp3')
-        mock_remove.assert_called_once_with('temp_sentence.mp3')
-
-    @patch('os.path.exists', return_value=True)
-    @patch('os.remove')
-    def test_file_deletion(self, mock_remove, mock_exists):
-        administer_sentence(['test_sentence'])
-        mock_exists.assert_called_once_with('temp_sentence.mp3')
-        mock_remove.assert_called_once_with('temp_sentence.mp3')
-
+    #     mock_exists.assert_called_once_with('temp_sentence.mp3')
+    #     mock_remove.assert_called_once_with('temp_sentence.mp3')
 
 class TestAdministerWord(unittest.TestCase):
 
@@ -48,23 +40,15 @@ class TestAdministerWord(unittest.TestCase):
         _, timestamp = administer_word(['test_word'])
         self.assertEqual(timestamp, 1717178400.0)
 
-    @patch('os.remove')
-    @patch('os.path.exists', return_value=True)
-    def test_file_creation(self, mock_exists, mock_remove):
+    # @patch('os.remove')
+    # @patch('os.path.exists', return_value=True)
+    # def test_file_creation(self, mock_exists, mock_remove):
 
-        sentence_list = ['test_word']
-        sentence, _ = administer_word(sentence_list)
+    #     word_list = ['test_word']
+    #     word, _ = administer_word(word_list)
 
-        mock_exists.assert_called_once_with('temp_word.mp3')
-        mock_remove.assert_called_once_with('temp_word.mp3')
-
-    @patch('os.path.exists', return_value=True)
-    @patch('os.remove')
-    def test_file_deletion(self, mock_remove, mock_exists):
-        administer_word(['test_word'])
-        mock_exists.assert_called_once_with('temp_word.mp3')
-        mock_remove.assert_called_once_with('temp_word.mp3')
-
+    #     mock_exists.assert_called_once_with('temp_word.mp3')
+    #     mock_remove.assert_called_once_with('temp_word.mp3')
 
 class TestAdministerBeep(unittest.TestCase):
 

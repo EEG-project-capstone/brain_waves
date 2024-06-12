@@ -99,7 +99,7 @@ def administer_beep(frequency=1000, duration=0.5):
     # Initialize sound
     frequency = 1000
     duration = 0.5
-    playsound("sample_beep.mp3")
+    playsound("brain_waves_packages/sample_beep.mp3")
     #for a Windows machine, use:
     #winsound.Beep(frequency, duration)
     
